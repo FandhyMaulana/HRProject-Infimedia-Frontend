@@ -1,0 +1,78 @@
+:root {
+  --sidebar-bg: #2c3e50;
+  --main-bg: #f4f7fc;
+  --primary-blue: #3498db;
+  --primary-text: #333;
+  --secondary-text: #7f8c8d;
+  --border-color: #dcdcdc;
+  --white: #ffffff;
+  --green-approve: #2ecc71;
+  --red-reject: #e74c3c;
+  --yellow-pending: #f1c40f;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg);
+  color: var(--primary-text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-container {
+  padding: 1.5rem;
+}
+
+/* Modern Table Style */
+.table-modern {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+.table-modern th,
+.table-modern td {
+  padding: 12px 15px;
+  text-align: left;
+}
+.table-modern thead {
+  background-color: #f8f9fa;
+}
+.table-modern th {
+  font-weight: 600;
+  color: var(--primary-text);
+}
+.table-modern tbody tr {
+  border-bottom: 1px solid #eee;
+}
+.table-modern tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--white);
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.status-approved {
+  background-color: var(--green-approve);
+}
+.status-rejected {
+  background-color: var(--red-reject);
+}
+.status-pending {
+  background-color: var(--yellow-pending);
+  color: #333;
+}
