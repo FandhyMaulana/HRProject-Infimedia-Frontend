@@ -1,0 +1,34 @@
+:root {
+  --primary-bg: #ffffff;
+  --sidebar-bg: #2c3446;
+  --primary-text: #b5b8be;
+  --accent: #57b1ff;
+  --accent-dark: #4a9de9;
+  --success: #41d219;
+  --error: #df1212;
+  --dark-text: #1f2937;
+  --light-gray-bg: #f3f4f6;
+  --border-color: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-gray-bg);
+  color: var(--dark-text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}

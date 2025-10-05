@@ -1,0 +1,133 @@
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: white;
+  width: 256px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 100;
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--primary-text);
+  cursor: pointer;
+}
+
+.nav {
+  flex-grow: 1;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-bottom: 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  color: var(--primary-text);
+  font-size: 1.125rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.navLink:hover {
+  background-color: #3b455c;
+  color: white;
+  text-decoration: none;
+}
+
+.active {
+  background-color: var(--accent);
+  color: white;
+  font-weight: 500;
+}
+
+.icon {
+  margin-right: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: var(--primary-text);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: #c51010;
+  color: white;
+}
+
+.overlay {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .overlayVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar {
+    position: relative;
+    transform: translateX(0);
+  }
+  .closeButton,
+  .overlay {
+    display: none;
+  }
+}

@@ -1,0 +1,104 @@
+.dialog {
+  position: relative;
+  z-index: 50;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.panelContainer {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+}
+
+.panelContent {
+  display: flex;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.panel {
+  width: 100%;
+  max-width: 500px;
+  transform-origin: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: white;
+  padding: 1.5rem;
+  text-align: left;
+  vertical-align: middle;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+}
+.closeButton:hover {
+  color: var(--dark-text);
+}
+
+.body {
+  margin-top: 1.5rem;
+}
+
+/* Transitions */
+.overlayEnter {
+  transition: ease-out 0.3s;
+}
+.overlayEnterFrom {
+  opacity: 0;
+}
+.overlayEnterTo {
+  opacity: 1;
+}
+.overlayLeave {
+  transition: ease-in 0.2s;
+}
+.overlayLeaveFrom {
+  opacity: 1;
+}
+.overlayLeaveTo {
+  opacity: 0;
+}
+
+.panelEnter {
+  transition: ease-out 0.3s;
+}
+.panelEnterFrom {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.panelEnterTo {
+  opacity: 1;
+  transform: scale(1);
+}
+.panelLeave {
+  transition: ease-in 0.2s;
+}
+.panelLeaveFrom {
+  opacity: 1;
+  transform: scale(1);
+}
+.panelLeaveTo {
+  opacity: 0;
+  transform: scale(0.95);
+}

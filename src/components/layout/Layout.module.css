@@ -1,0 +1,24 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  background-color: var(--light-gray-bg);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pageContent {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.pageContainer {
+  padding: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
