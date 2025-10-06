@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore';
 
 const axiosInstance = axios.create({
   // baseURL: 'https://localhost:7232/api',
-  baseURL: 'https://dogs-valentine-javascript-motel.trycloudflare.com/api',
+  baseURL: 'https://introducing-reunion-lung-luke.trycloudflare.com/api',
 });
 
 axiosInstance.interceptors.request.use(

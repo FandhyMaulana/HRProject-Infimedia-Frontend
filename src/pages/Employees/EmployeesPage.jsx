@@ -9,31 +9,130 @@ import Spinner from '../../components/common/Spinner';
 import Pagination from '../../components/common/Pagination';
 import { FaPlus, FaSearch } from 'react-icons/fa';
 
-// form untuk tambah/edit employee
+// // form untuk tambah/edit employee
+// const EmployeeForm = ({ initialData = {}, onSubmit, onCancel, departments, roles }) => {
+//   const [formData, setFormData] = useState({
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     password: '',
+//     departmentId: '',
+//     roleId: '',
+//   });
+
+//   useEffect(() => {
+//     if (initialData.employeeId) {
+//       setFormData({
+//         firstName: initialData.fullName?.split(' ')[0] || '',
+//         lastName: initialData.fullName?.split(' ').slice(1).join(' ') || '',
+//         email: initialData.email || '',
+//         password: '',
+//         departmentId: departments.find((d) => d.departmentName === initialData.departmentName)?.departmentId || '',
+//         roleId: roles.find((r) => r.roleName === initialData.roleName)?.roleId || '',
+//       });
+//     } else {
+//       setFormData({ firstName: '', lastName: '', email: '', password: '', departmentId: '', roleId: '' });
+//     }
+//   }, [initialData.employeeId, departments, roles]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     onSubmit(formData);
+//   };
+
+//   const isEditMode = !!initialData.employeeId;
+
+//   return (
+//     <form onSubmit={handleSubmit} className={styles.form}>
+//       <div className={styles.formGrid}>
+//         <div className={styles.formGroup}>
+//           <label htmlFor="firstName">First Name</label>
+//           <Input id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+//         </div>
+//         <div className={styles.formGroup}>
+//           <label htmlFor="lastName">Last Name</label>
+//           <Input id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
+//         </div>
+//       </div>
+//       <div className={styles.formGroup}>
+//         <label htmlFor="email">Email</label>
+//         <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required disabled={isEditMode} />
+//       </div>
+//       {!isEditMode && (
+//         <div className={styles.formGroup}>
+//           <label htmlFor="password">Password</label>
+//           <Input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required minLength={6} />
+//         </div>
+//       )}
+//       <div className={styles.formGrid}>
+//         <div className={styles.formGroup}>
+//           <label htmlFor="departmentId">Department</label>
+//           <select id="departmentId" name="departmentId" value={formData.departmentId} onChange={handleChange} className={styles.select} required>
+//             <option value="">Select Department</option>
+//             {departments.map((d) => (
+//               <option key={d.departmentId} value={d.departmentId}>
+//                 {d.departmentName}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//         <div className={styles.formGroup}>
+//           <label htmlFor="roleId">Role</label>
+//           <select id="roleId" name="roleId" value={formData.roleId} onChange={handleChange} className={styles.select} required>
+//             <option value="">Select Role</option>
+//             {roles.map((r) => (
+//               <option key={r.roleId} value={r.roleId}>
+//                 {r.roleName}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//       </div>
+//       <div className={styles.formActions}>
+//         <Button type="button" variant="secondary" onClick={onCancel}>
+//           Cancel
+//         </Button>
+//         <Button type="submit">{isEditMode ? 'Save Changes' : 'Create Employee'}</Button>
+//       </div>
+//     </form>
+//   );
+// };
+// Ganti komponen EmployeeForm yang lama dengan yang ini
 const EmployeeForm = ({ initialData = {}, onSubmit, onCancel, departments, roles }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: initialData.fullName?.split(' ')[0] || '',
+    lastName: initialData.fullName?.split(' ').slice(1).join(' ') || '',
+    email: initialData.email || '',
     password: '',
-    departmentId: '',
-    roleId: '',
+    phone: initialData.phone || '',
+    position: initialData.position || '',
+    hireDate: initialData.hireDate ? new Date(initialData.hireDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+    departmentId: departments.find((d) => d.departmentName === initialData.departmentName)?.departmentId || '',
+    roleId: roles.find((r) => r.roleName === initialData.roleName)?.roleId || '',
   });
 
+  // Kunci perbaikan ada di useEffect ini
   useEffect(() => {
-    if (initialData.employeeId) {
+    // Hanya update form jika initialData (data karyawan yang diedit) berubah
+    if (initialData && initialData.employeeId) {
       setFormData({
         firstName: initialData.fullName?.split(' ')[0] || '',
         lastName: initialData.fullName?.split(' ').slice(1).join(' ') || '',
         email: initialData.email || '',
         password: '',
+        phone: initialData.phone || '',
+        position: initialData.position || '',
+        hireDate: initialData.hireDate ? new Date(initialData.hireDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         departmentId: departments.find((d) => d.departmentName === initialData.departmentName)?.departmentId || '',
         roleId: roles.find((r) => r.roleName === initialData.roleName)?.roleId || '',
       });
-    } else {
-      setFormData({ firstName: '', lastName: '', email: '', password: '', departmentId: '', roleId: '' });
     }
-  }, [initialData.employeeId, departments, roles]);
+  }, [initialData.employeeId]); // <-- Dependensi diubah menjadi initialData.employeeId
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +162,22 @@ const EmployeeForm = ({ initialData = {}, onSubmit, onCancel, departments, roles
         <label htmlFor="email">Email</label>
         <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required disabled={isEditMode} />
       </div>
+
+      <div className={styles.formGrid}>
+        <div className={styles.formGroup}>
+          <label htmlFor="phone">Phone</label>
+          <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+        </div>
+        <div className={styles.formGroup}>
+          <label htmlFor="position">Position</label>
+          <Input id="position" name="position" value={formData.position} onChange={handleChange} />
+        </div>
+      </div>
+      <div className={styles.formGroup}>
+        <label htmlFor="hireDate">Hire Date</label>
+        <Input id="hireDate" name="hireDate" type="date" value={formData.hireDate} onChange={handleChange} required />
+      </div>
+
       {!isEditMode && (
         <div className={styles.formGroup}>
           <label htmlFor="password">Password</label>
@@ -219,6 +334,22 @@ const EmployeesPage = () => {
             <div className={styles.detailGroup}>
               <label>Email</label>
               <p>{modalState.data.email}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Phone</label>
+              <p>{modalState.data.phone || '-'}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Position</label>
+              <p>{modalState.data.position || '-'}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Hire Date</label>
+              <p>{new Date(modalState.data.hireDate).toLocaleDateString()}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Manager</label>
+              <p>{modalState.data.managerName || '-'}</p>
             </div>
             <div className={styles.detailGroup}>
               <label>Position</label>

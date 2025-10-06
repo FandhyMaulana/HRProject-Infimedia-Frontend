@@ -40,6 +40,22 @@ const Header = ({ toggleSidebar }) => {
               <p>{user.email}</p>
             </div>
             <div className={styles.detailGroup}>
+              <label>Phone</label>
+              <p>{user.phone || '-'}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Position</label>
+              <p>{user.position || '-'}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Hire Date</label>
+              <p>{new Date(user.hireDate).toLocaleDateString()}</p>
+            </div>
+            <div className={styles.detailGroup}>
+              <label>Manager</label>
+              <p>{user.managerName || '-'}</p>
+            </div>
+            <div className={styles.detailGroup}>
               <label>Position</label>
               <p>{user.position || '-'}</p>
             </div>
